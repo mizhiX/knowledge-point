@@ -15,13 +15,14 @@ print('Database version:', data)
 cursor.execute('SHOW DATABASES;')
 tables = [cursor.fetchall()]
 # print(tables)
-table_list = re.findall("\('(.*?)',\)", str(tables))
-# print(table_list)
-base_name = 'spiders'
+table_list = re.findall("\('(.*?)',\)", str(tables), re.I)
+print(table_list)
+base_name = 'Once_Upon_a_Time'
 # 判断数据库base_name是否存在, 如果不存在则创建数据库base_name
-if base_name not in table_list:
-    # create dataase创建数据库 spiders(数据库名字) default character set utf8 默认字符集utf8
-    cursor.execute('CREATE DATABASE spiders DEFAULT CHARACTER SET utf8')
+if base_name.lower() not in table_list:
+    # create dataase创建数据库 sprs(数据库名字) default character set utf8 默认字符集utf8
+    '''注意mysql自动将数据库名大写字母替换为小写字母'''
+    cursor.execute('CREATE DATABASE %s DEFAULT CHARACTER SET utf8' % base_name)
 else:
     print('已存在数据库' + base_name)
 # close()关闭
