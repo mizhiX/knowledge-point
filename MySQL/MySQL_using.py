@@ -193,44 +193,11 @@ def query_id(table_name, id):
         print('Failed')
 
 
+def db_close():
+    db.close()
+
+
 def main():
-    # 1.创建表
-    table_name = 'eee'
-    # create_table(table_name)
-
-    # 2.插入数据(增)
-    # id = '2018111602'
-    # name = 'Snow'
-    # age = 30
-    # table_name = 'hero'
-    # insert_into(table_name,id, name, age)
-
-    # 3.更新数据(改)
-    # id = '2018111603'
-    # name = 'Snow'
-    # age = 34
-    # 更新数据
-    # update(name, age)
-    # 插入或更新数据
-    # insert_or_update(id, name, age)
-
-    # 4.删除数据(删)
-    # table_name = 'hero'
-    # del_name = 'Emma'
-    # del_id = None
-    # delete_field(table_name, del_name, del_id)
-
-    # 5.查询数据
-    # table_name = 'devil'
-    id = 4
-    # name = 'Snow'
-    # small_age = 30
-    # big_age = 35
-    # query_data(table_name, id=id)
-    # query_id(table_name, id)
-    # rename_table('hero2', 'hero')
-    # delete_table(table_name)
-
     # 关闭
     db.close()
 

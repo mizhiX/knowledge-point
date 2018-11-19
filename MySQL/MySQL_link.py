@@ -5,7 +5,7 @@ import pymysql
 db = pymysql.connect(host='localhost', user='root', password='yao120', port=3306)
 # cursor()光标
 cursor = db.cursor()
-# execute()实行 # select version() 选择版本
+# execute()实行 # select version() 获取版本
 # 获取当前版本
 cursor.execute('SELECT VERSION()')
 # fetchone() 返回单个元组

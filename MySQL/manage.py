@@ -269,7 +269,8 @@ def main():
         elif option == 5:
             # 退出程序
             print('系统退出成功')
-            break # 跳出循环
+            db_close()
+            break
 
 
 if __name__ == '__main__':
