@@ -30,16 +30,12 @@ def get_top(response):
         # print(show_time)
 
         # 实时票房
-        real_time_head = dl.xpath('.//p[@class="realtime"]/text()')[0].strip()
-        real_time_tail = dl.xpath('.//p[@class="realtime"]/text()')[1].strip()
-        real_time_number = dl.xpath('.//p[@class="realtime"]/span/span/text()')[0]
-        real_time = real_time_head + real_time_number + real_time_tail
+        real_time_list = dl.xpath('.//p[@class="realtime"]//text()')
+        real_time = real_time_list[0].strip() + real_time_list[1].strip() + real_time_list[2].strip()
         # print(real_time)
         # 总票房
-        overall_ticket_head = dl.xpath('.//p[@class="total-boxoffice"]/text()')[0].strip()
-        overall_ticket_tail = dl.xpath('.//p[@class="total-boxoffice"]/text()')[1].strip()
-        overall_ticket_number = dl.xpath('.//p[@class="total-boxoffice"]/span/span/text()')[0]
-        overall_ticket = overall_ticket_head + overall_ticket_number + overall_ticket_tail
+        overall_ticket_list = dl.xpath('.//p[@class="total-boxoffice"]//text()')
+        overall_ticket = overall_ticket_list[0].strip() + overall_ticket_list[1].strip() + overall_ticket_list[2].strip()
         # print(overall_ticket)
         yield top, name, starring, show_time, real_time, overall_ticket
 
