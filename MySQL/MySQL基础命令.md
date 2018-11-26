@@ -60,25 +60,24 @@ data = cursor.fetchone()
 data = cursor.fetchall()
 # 会将结果以元祖形式全部返回, 如果数据量很大, 那么占用的开销会非常高
 # 最好用while循环加fetchone()方法来获取所有数据
-
 ```
 
 ## 操作表命令:
 
-###1. 创建表的形式:
+###1. 创建表的格式:
 
 ```python
-# 创建表之前有一定要在链接数据库是指定数据库"db='库名'"
+# 创建表之前一定要在链接数据库时指定数据库"db='库名'"
 第一种方法:直接创建
-sql = 'CREATE TABLE 表名 (属性名 数据类型 完整约束条件, 
+sql = '''CREATE TABLE 表名 (属性名 数据类型 完整约束条件, 
 						属性名 数据类型 完整约束条件, 
   						...
-    					属性名 数据类型 完整约束条件)'
-第二种方法: 先判断数据空中是否有此表, 如果没有则创建
-sql = 'CREATE TABLE IF NOT EXISTS 表名(属性名 数据类型 完整约束条件, 
+    					属性名 数据类型 完整约束条件)'''
+第二种方法: 先判断数据空库是否有此表, 如果没有则创建
+sql = '''CREATE TABLE IF NOT EXISTS 表名(属性名 数据类型 完整约束条件, 
 										属性名 数据类型 完整约束条件, 
   										...
-    									属性名 数据类型 完整约束条件)'
+    									属性名 数据类型 完整约束条件)'''
 ```
 
 
@@ -122,10 +121,10 @@ DEFAULT			为该属性设置默认值
 格式:
   CONSTRAINT 外键别名 FOREIGN KEY(属性1, 属性2..., 属性n) REFERENCES 表名(属性1, 属性2..., 属性n)
   实例:
-    sql = 'CREATE TABLE 表名1 (id int RPIMARY KEY, 
-    							stu_id int, 
-      							name varchar(20), 	
-        						CONSTRAINT 外键别名 FOREIGN KEY(stu_id) REFERENCES 表名2(id)')
+    sql = '''CREATE TABLE 表名1 (id int RPIMARY KEY,
+    							stu_id int,
+      							name varchar(20),
+        						CONSTRAINT 外键别名 FOREIGN KEY(stu_id) REFERENCES 表名2(id))'''
 	# 创建表1, 将表1的stu_id与表2的id链接
 ```
 
@@ -173,12 +172,10 @@ DEFAULT			为该属性设置默认值
 ## *综合示例:
 
 ```python
-sql = 'CREATE TABLE student (
-		id int PRIMARY KEY AUTO_INCREMENT,
-  		teacher_id int UNIQUE,
-    	name varchar(20) NOT NULL,
-      	sex varchar(10) DEFAULT 'male')
-# 创建student表, id为主键和自动增加, teacher_id为唯一的, name为非空, sex默认是'male'
+sql = '''CREATE TABLE hero(id int PRIMARY KEY AUTO_INCREMENT,
+name varchar(20) NOT NULL,
+sex varchar(10) DEFAULT "male")'''
+# 创建student表, id为主键和自动增加, name为非空, sex默认是'male'
 ```
 
 
@@ -198,8 +195,6 @@ sql = 'CREATE TABLE student (
   # 通过这个SQL语句可以查看表的详细定义, 除了字段名, 字段的数据类型, 约束条件外, 还可以查看表的默认存储引擎和字符编码
   SHOW CREATE TABLE 表名
 ```
-
-
 
 ## 修改表
 
@@ -245,6 +240,21 @@ sql = 'CREATE TABLE student (
   2. 删除父表的外键约束, 再删该表
 ```
 
+##查询表
+
+```python
+sql = 'select table_name from information_schema.tables where table_schema="Once_Upon_a_Time" and table_type="base table"'
+cursor.execute(sql)
+# 表的总数
+count = cursor.rowcount
+# 遍历所有表
+row = cursor.fetchone()
+rows = []
+while row:
+  rows += row
+  row = cursor.fetchone()
+```
+
 
 
 ## 查询表内数据
@@ -265,4 +275,12 @@ sql = 'CREATE TABLE student (
 number = cursor.rowcount
 ```
 
+
+
+## 插入数据(增)
+
+```python
+格式:
+  INSERT INTO 表名 (属性名1, 属性名2..., 属性名n) values(属性值1, 属性值2..., 属性值n)
+```
 

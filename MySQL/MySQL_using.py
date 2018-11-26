@@ -1,5 +1,5 @@
 import pymysql
-# 链接mysql  db='spiders'库
+# 链接mysql  db='Once_Upon_a_Time'库
 db = pymysql.connect(host='localhost', user='root', password='yao120', port=3306, db='Once_Upon_a_Time')
 # 创建光标
 cursor = db.cursor()
@@ -88,7 +88,9 @@ def update(name, age):
         db.rollback()
         print('Failed')
 """
-# 更新表数据
+
+
+# TODO 更新表数据
 def insert_or_update(table_name, id, name, age):
     """第二种方法: 判断id是否存在 如果存在则更新数据, 如果不存在则插入数据"""
     table_name = tuple([table_name])
@@ -102,6 +104,7 @@ def insert_or_update(table_name, id, name, age):
     except:
         db.rollback()
         print('Failed')
+
 
 # 更新表名
 def rename_table(table_name, new_table_name):
@@ -198,6 +201,8 @@ def db_close():
 
 
 def main():
+    table_name = 'Once_Upon_a_Time'
+    create_table(table_name)
     # 关闭
     db.close()
 

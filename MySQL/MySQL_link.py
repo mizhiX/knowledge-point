@@ -12,9 +12,9 @@ cursor.execute('SELECT VERSION()')
 data = cursor.fetchone()
 print('Database version:', data)
 
-cursor.execute('SHOW DATABASES;')
+cursor.execute('SHOW DATABASES')
 tables = [cursor.fetchall()]
-# print(tables)
+
 table_list = re.findall("\('(.*?)',\)", str(tables), re.I)
 print(table_list)
 base_name = 'Once_Upon_a_Time'
