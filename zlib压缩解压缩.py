@@ -17,6 +17,7 @@ print(d_str)# 输出hello world,0000000000000000000000000000
 
 
 # TODO 压缩解压缩文件
+# level 压缩等级, 0不压缩, 1最快压缩后的文件大, 9最慢压缩后的文件小
 def compress(in_file, dst, level=9):
     in_file = open(in_file, 'rb')
     dst = open(dst, 'wb')
